@@ -14,13 +14,14 @@ namespace SklepAsp.Controllers
 {
     public class ProductsController : Controller
     {
-        private SklepAspContext db = new SklepAspContext();
+        private readonly SklepAspContext db;
 
         private IProductService _productService { get; }
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService, SklepAspContext sklepAspContext)
         {
             _productService = productService;
+            this.db = sklepAspContext;
         }
 
         // GET: Products
