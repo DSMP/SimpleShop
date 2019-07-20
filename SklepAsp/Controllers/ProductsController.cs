@@ -55,8 +55,6 @@ namespace SklepAsp.Controllers
                 {
                     byte[] imageData = null;
                     string path = Path.Combine(@"C:\GitProjects\SklepAsp\SklepAsp\bin","Images/Products");
-                    var curProduct = db.Products.Add(product);
-                    db.SaveChanges();
                     if (!Directory.Exists(path))
                     {
                         Directory.CreateDirectory(path);
@@ -64,7 +62,7 @@ namespace SklepAsp.Controllers
                     if (Request.Files.Count > 0)
                     {
                         HttpPostedFileBase objFiles = Request.Files["Photo"];
-                        string fileName = Path.Combine(path, curProduct.ProductId.ToString() + "." + objFiles.ContentType.Split('/')[1]);
+                        string fileName = Path.Combine(path, new Guid() + "." + objFiles.ContentType.Split('/')[1]);
                         using (var binaryReader = new BinaryReader(objFiles.InputStream))
                         {
                             System.IO.File.WriteAllBytes(fileName, binaryReader.ReadBytes(objFiles.ContentLength));
@@ -78,7 +76,8 @@ namespace SklepAsp.Controllers
                 }
                 return RedirectToAction("Index");
             }
-
+            db.Products.Add(product);
+            db.SaveChanges();
             return View(product);
         }
 
