@@ -8,12 +8,20 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SklepAsp.Models;
+using SklepAsp.Services;
 
 namespace SklepAsp.Controllers
 {
     public class ProductsController : Controller
     {
         private SklepAspContext db = new SklepAspContext();
+
+        private IProductService _productService { get; }
+
+        public ProductsController(IProductService productService)
+        {
+            _productService = productService;
+        }
 
         // GET: Products
         public ActionResult Index()
@@ -51,33 +59,10 @@ namespace SklepAsp.Controllers
         {
             if (ModelState.IsValid)
             {
-                try
-                {
-                    byte[] imageData = null;
-                    string path = Path.Combine(@"C:\GitProjects\SklepAsp\SklepAsp\bin","Images/Products");
-                    if (!Directory.Exists(path))
-                    {
-                        Directory.CreateDirectory(path);
-                    }
-                    if (Request.Files.Count > 0)
-                    {
-                        HttpPostedFileBase objFiles = Request.Files["Photo"];
-                        string fileName = Path.Combine(path, new Guid() + "." + objFiles.ContentType.Split('/')[1]);
-                        using (var binaryReader = new BinaryReader(objFiles.InputStream))
-                        {
-                            System.IO.File.WriteAllBytes(fileName, binaryReader.ReadBytes(objFiles.ContentLength));
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-
-                    throw;
-                }
+                HttpPostedFileBase objFiles = Request.Files["Photo"];
+                _productService.Create(product, objFiles.InputStream, objFiles.ContentType);
                 return RedirectToAction("Index");
             }
-            db.Products.Add(product);
-            db.SaveChanges();
             return View(product);
         }
 
