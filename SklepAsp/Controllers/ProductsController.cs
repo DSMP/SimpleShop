@@ -33,7 +33,7 @@ namespace SklepAsp.Controllers
         // GET: Products/Details/5
         public ActionResult Details(long id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -61,7 +61,7 @@ namespace SklepAsp.Controllers
             if (ModelState.IsValid)
             {
                 HttpPostedFileBase objFiles = Request.Files["Image"];
-                _productService.Create(product, objFiles.InputStream, objFiles.ContentType);
+                _productService.Create(product, objFiles.InputStream, objFiles.ContentType, Server.MapPath("Images/"));
                 return RedirectToAction("Index");
             }
             return View(product);
@@ -70,7 +70,7 @@ namespace SklepAsp.Controllers
         // GET: Products/Edit/5
         public ActionResult Edit(long id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

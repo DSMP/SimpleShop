@@ -18,20 +18,19 @@ namespace SklepAsp.Services
             _productRepository = productRepository;
             _sklepAspContext = sklepAspContext;
         }
-        public void Create(Product objectToCreate, Stream imageStream, string imageContentType)
+        public void Create(Product objectToCreate, Stream imageStream, string imageContentType, string basePath)
         {
             try
             {
-                string path = Path.Combine(@"C:\GitProjects\SklepAsp\SklepAsp\bin", @"Images\Products");
-                if (!Directory.Exists(path))
+                if (!Directory.Exists(basePath))
                 {
-                    Directory.CreateDirectory(path);
+                    Directory.CreateDirectory(basePath);
                 }
-                string fileName = Path.Combine(path, Guid.NewGuid() + "." + imageContentType.Split('/')[1]);
+                string fileName = Path.Combine(Guid.NewGuid() + "." + imageContentType.Split('/')[1]);
                 objectToCreate.Image = fileName;
                 _sklepAspContext.Products.Add(objectToCreate);
                 _sklepAspContext.SaveChanges();
-                _productRepository.Create(imageStream, fileName);
+                _productRepository.Create(imageStream, Path.Combine(basePath, fileName));
 
             }
             catch (Exception ex)

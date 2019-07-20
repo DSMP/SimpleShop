@@ -10,6 +10,6 @@ namespace SklepAsp.Services
 {
     public interface IProductService : ICrud<Product>
     {
-        void Create(Product objectToCreate, Stream imageStream, string imageContentType);
+        void Create(Product objectToCreate, Stream imageStream, string imageContentType, string basePath);
     }
 }

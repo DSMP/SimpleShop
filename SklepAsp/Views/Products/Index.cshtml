@@ -42,11 +42,12 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.DateCreated)
+       >     @Html.DisplayFor(modelItem => item.DateCreated)
         </td>
         <td>
             @{
-                <img src="" width="50px" />
+                var path = "Images\\" + item.Image;
+                <img src="@path" alt="no image" width="50px" />
             }
         </td>
         <td>
