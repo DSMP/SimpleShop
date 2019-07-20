@@ -61,7 +61,7 @@ namespace SklepAsp.Controllers
             if (ModelState.IsValid)
             {
                 HttpPostedFileBase objFiles = Request.Files["Image"];
-                _productService.Create(product, objFiles.InputStream, objFiles.ContentType, Server.MapPath("Images/"));
+                _productService.Create(product, objFiles.InputStream, objFiles.ContentType, Server.MapPath("../Resources/Images"));
                 return RedirectToAction("Index");
             }
             return View(product);
