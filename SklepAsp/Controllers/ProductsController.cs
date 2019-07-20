@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -46,10 +47,28 @@ namespace SklepAsp.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ProductId,Name,Cost,Description,DateCreated,Photo")] Product product)
+        public ActionResult Create([Bind(Include = "ProductId,Name,Cost,Description,DateCreated")] Product product)
         {
             if (ModelState.IsValid)
             {
+                try
+                {
+                    byte[] imageData = null;
+                    if (Request.Files.Count > 0)
+                    {
+                        HttpPostedFileBase objFiles = Request.Files["Photo"];
+
+                        using (var binaryReader = new BinaryReader(objFiles.InputStream))
+                        {
+                            product.Photo = binaryReader.ReadBytes(objFiles.ContentLength);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    throw;
+                }
                 db.Products.Add(product);
                 db.SaveChanges();
                 return RedirectToAction("Index");
