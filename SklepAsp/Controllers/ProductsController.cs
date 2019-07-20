@@ -54,13 +54,18 @@ namespace SklepAsp.Controllers
                 try
                 {
                     byte[] imageData = null;
+                    string path = Path.Combine(@"C:\GitProjects\SklepAsp\SklepAsp\bin","Images/Products");
+                    if (!Directory.Exists(path))
+                    {
+                        Directory.CreateDirectory(path);
+                    }
                     if (Request.Files.Count > 0)
                     {
                         HttpPostedFileBase objFiles = Request.Files["Photo"];
 
                         using (var binaryReader = new BinaryReader(objFiles.InputStream))
                         {
-                            product.Photo = binaryReader.ReadBytes(objFiles.ContentLength);
+                            System.IO.File.WriteAllBytes(Path.Combine(path,product.ProductId.ToString()+"."+objFiles.ContentType.Split('/')[1]),binaryReader.ReadBytes(objFiles.ContentLength));
                         }
                     }
                 }
