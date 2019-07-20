@@ -143,6 +143,14 @@
     <Compile Include="Migrations\201907201139194_GuidForProduct.Designer.cs">
       <DependentUpon>201907201139194_GuidForProduct.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907201146084_ProductIdAsIdentity.cs" />
+    <Compile Include="Migrations\201907201146084_ProductIdAsIdentity.Designer.cs">
+      <DependentUpon>201907201146084_ProductIdAsIdentity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907201203065_PrductIdAsLong.cs" />
+    <Compile Include="Migrations\201907201203065_PrductIdAsLong.Designer.cs">
+      <DependentUpon>201907201203065_PrductIdAsLong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SklepAspContext.cs" />
@@ -215,6 +223,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907201139194_GuidForProduct.resx">
       <DependentUpon>201907201139194_GuidForProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907201146084_ProductIdAsIdentity.resx">
+      <DependentUpon>201907201146084_ProductIdAsIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907201203065_PrductIdAsLong.resx">
+      <DependentUpon>201907201203065_PrductIdAsLong.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

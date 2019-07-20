@@ -10,12 +10,16 @@ namespace SklepAsp.Models
     public class Product
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public Guid ProductId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public long ProductId { get; set; }
         public string Name { get; set; }
         public Decimal Cost { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
         public byte[] Photo { get; set; }
+        public Product()
+        {
+            DateCreated = DateTime.UtcNow;
+        }
     }
 }
