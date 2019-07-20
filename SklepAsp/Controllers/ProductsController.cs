@@ -31,7 +31,7 @@ namespace SklepAsp.Controllers
         }
 
         // GET: Products/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(long id)
         {
             if (id == null)
             {
@@ -68,7 +68,7 @@ namespace SklepAsp.Controllers
         }
 
         // GET: Products/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(long id)
         {
             if (id == null)
             {
@@ -99,9 +99,9 @@ namespace SklepAsp.Controllers
         }
 
         // GET: Products/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(long id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -116,7 +116,7 @@ namespace SklepAsp.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(long id)
         {
             Product product = db.Products.Find(id);
             db.Products.Remove(product);
