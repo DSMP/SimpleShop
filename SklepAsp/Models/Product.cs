@@ -16,7 +16,7 @@ namespace SklepAsp.Models
         public Decimal Cost { get; set; }
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
-        public byte[] Photo { get; set; }
+        public string Image { get; set; }
         public Product()
         {
             DateCreated = DateTime.UtcNow;

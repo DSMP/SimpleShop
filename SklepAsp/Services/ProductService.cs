@@ -27,7 +27,8 @@ namespace SklepAsp.Services
                 {
                     Directory.CreateDirectory(path);
                 }
-                string fileName = Path.Combine(path, new Guid() + "." + imageContentType.Split('/')[1]);
+                string fileName = Path.Combine(path, Guid.NewGuid() + "." + imageContentType.Split('/')[1]);
+                objectToCreate.Image = fileName;
                 _sklepAspContext.Products.Add(objectToCreate);
                 _sklepAspContext.SaveChanges();
                 _productRepository.Create(imageStream, fileName);

@@ -60,7 +60,7 @@ namespace SklepAsp.Controllers
         {
             if (ModelState.IsValid)
             {
-                HttpPostedFileBase objFiles = Request.Files["Photo"];
+                HttpPostedFileBase objFiles = Request.Files["Image"];
                 _productService.Create(product, objFiles.InputStream, objFiles.ContentType);
                 return RedirectToAction("Index");
             }
