@@ -199,9 +199,27 @@
     <Compile Include="Migrations\201907211143116_AddIdentity.Designer.cs">
       <DependentUpon>201907211143116_AddIdentity.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907212003280_CartItms.cs" />
+    <Compile Include="Migrations\201907212003280_CartItms.Designer.cs">
+      <DependentUpon>201907212003280_CartItms.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907212010281_Invoices.cs" />
+    <Compile Include="Migrations\201907212010281_Invoices.Designer.cs">
+      <DependentUpon>201907212010281_Invoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907212012310_Ivoice2.cs" />
+    <Compile Include="Migrations\201907212012310_Ivoice2.Designer.cs">
+      <DependentUpon>201907212012310_Ivoice2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907212019017_invoie-Products.cs" />
+    <Compile Include="Migrations\201907212019017_invoie-Products.Designer.cs">
+      <DependentUpon>201907212019017_invoie-Products.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\SklepAspContext.cs" />
@@ -312,6 +330,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907211143116_AddIdentity.resx">
       <DependentUpon>201907211143116_AddIdentity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907212003280_CartItms.resx">
+      <DependentUpon>201907212003280_CartItms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907212010281_Invoices.resx">
+      <DependentUpon>201907212010281_Invoices.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907212012310_Ivoice2.resx">
+      <DependentUpon>201907212012310_Ivoice2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907212019017_invoie-Products.resx">
+      <DependentUpon>201907212019017_invoie-Products.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -17,6 +17,7 @@ namespace SklepAsp.Models
         public string Description { get; set; }
         public DateTime DateCreated { get; set; }
         public string Image { get; set; }
+        public ICollection<Invoice> Invoices { get; set; }
         public Product()
         {
             DateCreated = DateTime.UtcNow;

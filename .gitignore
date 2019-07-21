@@ -188,3 +188,4 @@ FakesAssemblies/
 *.bak
 SymphoneSDKBinding/
 MockFactory.cs
+SklepAsp/Migrations/
