@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
@@ -40,9 +41,26 @@ namespace SklepAsp
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
-            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<SklepAspContext>()));
+            var dbContext = context.Get<SklepAspContext>();
+            var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(dbContext));
+            if (!dbContext.Roles.Any(p => p.Name.Equals("Admin")))
+            {
+                dbContext.Roles.Add(new IdentityRole("Admin"));
+                dbContext.SaveChanges();
+            }
+            if (!dbContext.Users.Any(p => p.Roles.Any(pp => dbContext.Roles.FirstOrDefault(pr => pr.Id.Equals(pp.RoleId)).Name.Equals("Admin"))))
+            {
+                var userEmail = "myadm@wp.pl";
+                var user = new ApplicationUser { UserName = userEmail, Email = userEmail, EmailConfirmed = true,
+                    PasswordHash = manager.PasswordHasher.HashPassword("Admin123!"), SecurityStamp = "" };
+                dbContext.Users.Add(user).Roles.Add(new IdentityUserRole { RoleId = dbContext.Roles.First(f => f.Name.Equals("Admin")).Id, UserId = user.Id });                
+                dbContext.SaveChanges();
+                manager.UpdateSecurityStampAsync(user.Id);
+            }
+
+
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser>(manager)
             {
