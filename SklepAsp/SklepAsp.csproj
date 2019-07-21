@@ -195,6 +195,10 @@
     <Compile Include="Migrations\201907201814135_PhotoAsImagePathName.Designer.cs">
       <DependentUpon>201907201814135_PhotoAsImagePathName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201907211143116_AddIdentity.cs" />
+    <Compile Include="Migrations\201907211143116_AddIdentity.Designer.cs">
+      <DependentUpon>201907211143116_AddIdentity.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -305,6 +309,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201907201814135_PhotoAsImagePathName.resx">
       <DependentUpon>201907201814135_PhotoAsImagePathName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907211143116_AddIdentity.resx">
+      <DependentUpon>201907211143116_AddIdentity.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
