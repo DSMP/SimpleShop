@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Web;
 
 namespace SklepAsp.Models
 {
-    public class SklepAspContext : DbContext
+    public class SklepAspContext : IdentityDbContext<ApplicationUser>
     {
         // You can add custom code to this file. Changes will not be overwritten.
         // 
@@ -17,6 +18,10 @@ namespace SklepAsp.Models
 
         public SklepAspContext() : base("name=SklepAspContext")
         {
+        }
+        public static SklepAspContext Create()
+        {
+            return new SklepAspContext();
         }
 
         public System.Data.Entity.DbSet<Product> Products { get; set; }
