@@ -18,6 +18,10 @@ namespace SklepAsp.Models
         public SklepAspContext() : base("name=SklepAspContext")
         {
         }
+        public static SklepAspContext Create()
+        {
+            return new SklepAspContext();
+        }
 
         public System.Data.Entity.DbSet<Product> Products { get; set; }
     }
