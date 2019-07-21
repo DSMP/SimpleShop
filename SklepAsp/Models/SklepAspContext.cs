@@ -25,5 +25,7 @@ namespace SklepAsp.Models
         }
 
         public System.Data.Entity.DbSet<Product> Products { get; set; }
+        public DbSet<CartItem> ShoppingCartItems { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
     }
 }
